@@ -5,8 +5,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-import unir.tfg.ventas.model.AlmazenFigolers;
-import unir.tfg.ventas.services.IAlmazenFigolersServices;
+import unir.tfg.ventas.model.Almacen;
+import unir.tfg.ventas.services.IAlmacenService;
 
 import java.util.List;
 
@@ -14,7 +14,7 @@ import java.util.List;
 public class VentasController {
 
     @Autowired
-    private IAlmazenFigolersServices almazenFigolersServices;
+    private IAlmacenService almacenService;
 
     @GetMapping("/greeting")
     public String greeting(@RequestParam(name="name", required=false, defaultValue="World") String name, Model model) {
@@ -22,13 +22,13 @@ public class VentasController {
         return "greeting";
     }
 
-    @GetMapping("almacenes")
-    public String getAlmacenes(Model model) {
-        List<AlmazenFigolers> almazenes = almazenFigolersServices.findAll();
+    @GetMapping("listAlmacenes")
+    public String listAlmacenes(Model model) {
+        List<Almacen> almazenes = almacenService.findAll();
 
         model.addAttribute("almacenes", almazenes);
 
-        return "showAlmacenes";
+        return "showListAlmacenes";
     }
 
 }
