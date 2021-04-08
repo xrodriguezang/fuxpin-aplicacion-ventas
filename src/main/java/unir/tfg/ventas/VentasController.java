@@ -31,4 +31,13 @@ public class VentasController {
         return "showListAlmacenes";
     }
 
+    @GetMapping("listAlmacenes2")
+    public String listAlmacenes2(Model model) {
+        List<Almacen> almazenes = almacenService.findAll();
+
+        model.addAttribute("almacenes", almazenes);
+
+        return "showAlmacenes";
+    }
+
 }

@@ -2,14 +2,16 @@ spring:
   application:
       name: ventas
 
-#https://zetcode.com/springboot/postgresql/
+####### POSTGRESQL Configuration #########
   jpa:
     hibernate:
+      ## To avoid conflicts, the automatic schema creation is turned off
       ddl-auto: none
   datasource:
+    ## Database is not embedded. Spring Boot 2 - external database
     initialization-mode: always
     platform: postgres
-    url: jdbc:postgresql://192.168.1.48:5432/aplicaciondeventas
+    url: jdbc:postgresql://pi.intranet.cat:5432/aplicaciondeventas
     username: aplicacionventas
     password: projectAplicacionVentas
 
