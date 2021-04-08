@@ -27,3 +27,13 @@ server:
         keyStore: file:C:\Users\amgri\desenvolupament\ss-tfg-unir\xrodrigdnskeystore
         keyStorePassword: 123456
 
+### Keycloak configuration ###
+keycloak:
+  realm: programasgestion
+  resource: aplicacion-ventas
+  #auth-server-url: https://localhost:8443/auth/
+  auth-server-url: https://tfc.dnsnet.info:8443/auth/
+  ssl-required: external
+  public-client: true
+  principal-attribute: uid
+

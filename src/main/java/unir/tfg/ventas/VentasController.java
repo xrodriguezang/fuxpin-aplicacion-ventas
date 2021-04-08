@@ -1,5 +1,7 @@
 package unir.tfg.ventas;
 
+import org.keycloak.adapters.springsecurity.token.KeycloakAuthenticationToken;
+import org.keycloak.representations.AccessToken;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -8,7 +10,9 @@ import org.springframework.web.bind.annotation.RequestParam;
 import unir.tfg.ventas.model.Almacen;
 import unir.tfg.ventas.services.IAlmacenService;
 
+import java.security.Principal;
 import java.util.List;
+import java.util.Map;
 
 @Controller
 public class VentasController {
@@ -38,6 +42,23 @@ public class VentasController {
         model.addAttribute("almacenes", almazenes);
 
         return "showAlmacenes";
+    }
+
+    @GetMapping("/userinfo")
+    public String userInfoController(Model model, Principal principal) {
+
+        KeycloakAuthenticationToken keycloakAuthenticationToken = (KeycloakAuthenticationToken) principal;
+        AccessToken accessToken = keycloakAuthenticationToken.getAccount().getKeycloakSecurityContext().getToken();
+
+        model.addAttribute("username", accessToken.getGivenName());
+        model.addAttribute("user", accessToken.getPreferredUsername());
+
+        Map<String, Object> otherClaims = accessToken.getOtherClaims();
+        //user.setCustomAttributes(otherClaims);
+
+        model.addAttribute("edad", otherClaims.get("Edad"));
+
+        return "userInfoDetails";
     }
 
 }
