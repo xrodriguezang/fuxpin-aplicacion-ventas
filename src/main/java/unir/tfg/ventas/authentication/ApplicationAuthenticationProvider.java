@@ -30,7 +30,8 @@ public class ApplicationAuthenticationProvider extends KeycloakAuthenticationPro
     @Override
     public Authentication authenticate(Authentication authentication) throws AuthenticationException {
         KeycloakAuthenticationToken token = (KeycloakAuthenticationToken) authentication;
-        List<GrantedAuthority> grantedAuthorities = new ArrayList<GrantedAuthority>();
+        List<GrantedAuthority> grantedAuthorities = new ArrayList<>();
+        grantedAuthorities.addAll(addUserSpecificAuthoritiesFromLegacy(grantedAuthorities));
 
 
         // token.setDetails("ddd");
@@ -39,9 +40,19 @@ public class ApplicationAuthenticationProvider extends KeycloakAuthenticationPro
             grantedAuthorities.add(new KeycloakRole(role));
         }
 
-        grantedAuthorities.add(new KeycloakRole("pepito"));
-
         return new KeycloakAuthenticationToken(token.getAccount(), token.isInteractive(), mapAuthorities(grantedAuthorities));
+    }
+
+    protected Collection<? extends GrantedAuthority> addUserSpecificAuthoritiesFromLegacy(List<GrantedAuthority> authorities ) {
+
+        // potentially add user specific authentication, lookup from internal database
+        // etc...
+
+        List<GrantedAuthority> result = new ArrayList<>();
+
+        result.add(new KeycloakRole("pepito"));
+
+        return result;
     }
 
     private Collection<? extends GrantedAuthority> mapAuthorities(

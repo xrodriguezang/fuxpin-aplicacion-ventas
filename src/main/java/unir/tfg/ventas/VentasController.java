@@ -61,4 +61,23 @@ public class VentasController {
         return "userInfoDetails";
     }
 
+    @GetMapping("/app-profile")
+    public String userProfile(Model model, Principal principal) {
+
+        KeycloakAuthenticationToken keycloakAuthenticationToken = (KeycloakAuthenticationToken) principal;
+        AccessToken accessToken = keycloakAuthenticationToken.getAccount().getKeycloakSecurityContext().getToken();
+
+        model.addAttribute("username", accessToken.getGivenName());
+        model.addAttribute("nameSurnames", accessToken.getName());
+        model.addAttribute("email", accessToken.getEmail());
+        model.addAttribute("user", accessToken.getPreferredUsername());
+
+        Map<String, Object> attributes = accessToken.getOtherClaims();
+        //user.setCustomAttributes(otherClaims);
+
+        model.addAttribute("personalAttributes", attributes);
+
+        return "app-profile";
+    }
+
 }
