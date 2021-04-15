@@ -36,25 +36,34 @@ dependencies {
 	// Use in thymeleaf the acces control by roles
 	implementation 'org.thymeleaf.extras:thymeleaf-extras-springsecurity5'
 
-	// Keycloak
+	// Keycloak starter
 	implementation 'org.keycloak:keycloak-spring-boot-starter:12.0.4'
 
 	implementation 'org.springframework.boot:spring-boot-starter-thymeleaf'
 	implementation 'org.springframework.boot:spring-boot-starter-web'
 
-    implementation 'org.springframework.cloud:spring-cloud-starter-config'
+    // Starter to became a Spring Cloud Config Client
+	implementation 'org.springframework.cloud:spring-cloud-starter-config'
+
+	// By default is not activated. It is activated to get the properties of Spring Cloud Config - Server
 	implementation 'org.springframework.cloud:spring-cloud-starter-bootstrap'
 
 	developmentOnly 'org.springframework.boot:spring-boot-devtools'
+
 	//implementation 'org.thymeleaf.extras:thymeleaf-extras-springsecurity5'
+
 	compileOnly 'org.projectlombok:lombok'
+
 	runtimeOnly 'org.postgresql:postgresql'
+
 	annotationProcessor 'org.projectlombok:lombok'
+
 	providedRuntime 'org.springframework.boot:spring-boot-starter-tomcat'
+
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
 	//testImplementation 'org.springframework.security:spring-security-test'
 
-	println("- Aplicación de Ventas ensambled correctly - ")
+	println("- Application Ventas ensambled correctly - ")
 }
 
 dependencyManagement {

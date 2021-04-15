@@ -7,6 +7,9 @@ import unir.tfg.ventas.repository.AlmacenRepository;
 
 import java.util.List;
 
+/**
+ * @author <a href="mailto:amgrill@gmail.com">Xavier Rodríguez</a>
+ */
 @Service
 public class AlmacenService implements IAlmacenService {
 
