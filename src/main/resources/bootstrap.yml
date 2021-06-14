@@ -1,15 +1,9 @@
 spring:
-  profiles:
-    # Profile actived. example: ventas-localhost.yml
-    active: localhost
   cloud:
     config:
       # user + password Config Cloud Config Server
-      username: root
-      password: s2cr3t
-      uri: https://xrodrig.dnsnet.info:8445/fuxpin-config-server/
-      name: ventas
-      # branch: master / develop / feature ...
-      label: develop
-  config:
-    import: configserver:https://xrodrig.dnsnet.info:8445/fuxpin-config-server/
+      username: ${cloud.config.rest.user}
+      password: ${cloud.config.rest.password}
+
+      # file configuration in Spring Cloud Config Server
+      name: fuxpin-aplicacionventas

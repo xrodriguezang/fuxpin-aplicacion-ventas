@@ -1,5 +1,6 @@
 package unir.tfg.ventas.authentication;
 
+import lombok.extern.slf4j.Slf4j;
 import org.keycloak.adapters.springsecurity.account.KeycloakRole;
 import org.keycloak.adapters.springsecurity.authentication.KeycloakAuthenticationProvider;
 import org.keycloak.adapters.springsecurity.token.KeycloakAuthenticationToken;
@@ -13,11 +14,15 @@ import java.util.Collection;
 import java.util.List;
 
 /**
- * Extends authentication on a {@link KeycloakAuthenticationToken}.
+ * Extends authentication on a {@link KeycloakAuthenticationProvider}.
+ *
+ * This authentications provider extends the keycloak provider to add mircroservice call that injects he roles of the legacy
+ * application.
  *
  * @author <a href="mailto:amgrill@gmail.com">Xavier Rodríguez</a>
  * @version $Revision: 1 $
  */
+@Slf4j
 public class ApplicationAuthenticationProvider extends KeycloakAuthenticationProvider {
 
     private GrantedAuthoritiesMapper grantedAuthoritiesMapper;
@@ -49,6 +54,8 @@ public class ApplicationAuthenticationProvider extends KeycloakAuthenticationPro
         // etc...
 
         List<GrantedAuthority> result = new ArrayList<>();
+
+        log.info("Adding role pepito to User!");
 
         result.add(new KeycloakRole("pepito"));
 

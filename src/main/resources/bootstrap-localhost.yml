@@ -1,0 +1,8 @@
+spring:
+  cloud:
+    config:
+      uri: https://xrodrig.dnsnet.info:8446/fuxpin-config-server/
+      # Bracnh - develop
+      label: develop
+  config:
+    import: configserver:https://xrodrig.dnsnet.info:8446/fuxpin-config-server/
