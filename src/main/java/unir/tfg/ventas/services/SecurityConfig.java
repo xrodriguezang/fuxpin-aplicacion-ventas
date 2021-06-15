@@ -33,7 +33,6 @@ import unir.tfg.ventas.contract.LegacyRolesServiceClient;
  */
 @Configuration
 @EnableWebSecurity
-@EnableFeignClients
 @ComponentScan(basePackageClasses = KeycloakSecurityComponents.class)
 class SecurityConfig extends KeycloakWebSecurityConfigurerAdapter
 {
@@ -52,7 +51,7 @@ class SecurityConfig extends KeycloakWebSecurityConfigurerAdapter
         //legacyRolesServiceClient.getRoles("xrodrig");
         ApplicationAuthenticationProvider keycloakAuthenticationProvider = applicationKeycloakAuthenticationProvider();
 
-        // The legacyRoleServiceClient must be
+        // The service
         keycloakAuthenticationProvider.setLegacyRolesServiceClient(legacyRolesServiceClient);
         keycloakAuthenticationProvider.setGrantedAuthoritiesMapper(new SimpleAuthorityMapper());
         auth.authenticationProvider(keycloakAuthenticationProvider);
