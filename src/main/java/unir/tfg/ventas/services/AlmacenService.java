@@ -8,7 +8,9 @@ import unir.tfg.ventas.repository.AlmacenRepository;
 import java.util.List;
 
 /**
- * @author <a href="mailto:amgrill@gmail.com">Xavier Rodríguez</a>
+ * Service that provides the interation with de database - object Almacen
+ *
+ * @author Xavier Rodríguez
  */
 @Service
 public class AlmacenService implements IAlmacenService {

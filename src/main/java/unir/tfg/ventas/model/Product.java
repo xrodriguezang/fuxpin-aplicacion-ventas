@@ -5,6 +5,11 @@ import lombok.Setter;
 
 import javax.persistence.*;
 
+/**
+ * JPA - Entity - Product
+ *
+ * @author Xavier Rodríguez
+ */
 @Entity
 @Table (name = "PRODUCT")
 @Getter @Setter

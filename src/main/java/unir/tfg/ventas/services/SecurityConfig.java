@@ -5,6 +5,7 @@ import org.keycloak.adapters.springboot.KeycloakSpringBootConfigResolver;
 import org.keycloak.adapters.springsecurity.KeycloakSecurityComponents;
 import org.keycloak.adapters.springsecurity.config.KeycloakWebSecurityConfigurerAdapter;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cloud.openfeign.EnableFeignClients;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
@@ -16,12 +17,28 @@ import org.springframework.security.core.session.SessionRegistryImpl;
 import org.springframework.security.web.authentication.session.RegisterSessionAuthenticationStrategy;
 import org.springframework.security.web.authentication.session.SessionAuthenticationStrategy;
 import unir.tfg.ventas.authentication.ApplicationAuthenticationProvider;
+import unir.tfg.ventas.contract.LegacyRolesServiceClient;
 
+/**
+ * The same object that provides the microservice
+ *
+ * Object that contains the role of the user.
+ *
+ * It's roles is added to fuxpin-applicacionventas
+ *
+ * @author Xavier Rodríguez
+ *
+ * EnableFeignClients -> Injects the implementation Rest of the microservice
+ *
+ */
 @Configuration
 @EnableWebSecurity
+@EnableFeignClients
 @ComponentScan(basePackageClasses = KeycloakSecurityComponents.class)
 class SecurityConfig extends KeycloakWebSecurityConfigurerAdapter
 {
+    @Autowired
+    LegacyRolesServiceClient legacyRolesServiceClient;
 
     protected ApplicationAuthenticationProvider applicationKeycloakAuthenticationProvider() {
         return new ApplicationAuthenticationProvider();
@@ -32,7 +49,11 @@ class SecurityConfig extends KeycloakWebSecurityConfigurerAdapter
      */
     @Autowired
     public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
+        //legacyRolesServiceClient.getRoles("xrodrig");
         ApplicationAuthenticationProvider keycloakAuthenticationProvider = applicationKeycloakAuthenticationProvider();
+
+        // The legacyRoleServiceClient must be
+        keycloakAuthenticationProvider.setLegacyRolesServiceClient(legacyRolesServiceClient);
         keycloakAuthenticationProvider.setGrantedAuthoritiesMapper(new SimpleAuthorityMapper());
         auth.authenticationProvider(keycloakAuthenticationProvider);
     }
@@ -51,6 +72,12 @@ class SecurityConfig extends KeycloakWebSecurityConfigurerAdapter
         return new RegisterSessionAuthenticationStrategy(new SessionRegistryImpl());
     }
 
+    /**
+     * Rules to protect the application
+     *
+     * @param http
+     * @throws Exception
+     */
     @Override
     protected void configure(HttpSecurity http) throws Exception
     {
@@ -62,5 +89,7 @@ class SecurityConfig extends KeycloakWebSecurityConfigurerAdapter
                 .antMatchers("/app-profile*").hasRole("user")
                 .anyRequest().permitAll();
     }
+
+
 
 }

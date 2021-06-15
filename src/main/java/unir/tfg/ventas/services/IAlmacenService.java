@@ -10,10 +10,11 @@ import java.util.List;
  *
  * Filter the CRUD methods.
  *
- * @author <a href="mailto:amgrill@gmail.com">Xavier Rodríguez</a>
+ * @author Xavier Rodríguez
  *
  */
 public interface IAlmacenService {
 
+    // It's no necessay implements this method. Spring Data do it for us
     List<Almacen> findAll();
 }

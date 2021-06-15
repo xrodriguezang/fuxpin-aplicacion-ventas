@@ -1,8 +1,8 @@
 spring:
   cloud:
     config:
-      uri: https://xrodrig.dnsnet.info:8446/fuxpin-config-server/
-      # Bracnh - develop
+      uri: https://pi.intranet.cat:8446/fuxpin-config-server/
+      # Bracnh - master
       label: develop
   config:
-    import: configserver:https://xrodrig.dnsnet.info:8446/fuxpin-config-server/
+    import: configserver:https://pi.intranet.cat:8446/fuxpin-config-server/

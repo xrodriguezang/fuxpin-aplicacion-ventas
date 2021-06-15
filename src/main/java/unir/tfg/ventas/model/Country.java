@@ -5,6 +5,11 @@ import lombok.Setter;
 
 import javax.persistence.*;
 
+/**
+ * JPA - Entity - Country
+ *
+ * @author Xavier Rodríguez
+ */
 @Entity
 @Table(name = "COUNTRY")
 @Getter @Setter

@@ -5,6 +5,11 @@ import lombok.Setter;
 
 import javax.persistence.*;
 
+/**
+ * JPA - Entity - Almacen
+ *
+ * @author Xavier Rodríguez
+ */
 @Entity
 @Table (name = "ALMACEN")
 @Getter @Setter

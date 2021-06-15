@@ -63,6 +63,11 @@ dependencies {
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
 	//testImplementation 'org.springframework.security:spring-security-test'
 
+	// Modules to became client of Fuxpin Eureka Server
+	implementation 'org.springframework.cloud:spring-cloud-starter-netflix-eureka-client'
+
+	implementation group: 'org.springframework.cloud', name: 'spring-cloud-starter-feign', version: '1.4.7.RELEASE'
+
 	println("- Application Ventas ensambled correctly - ")
 }
 
