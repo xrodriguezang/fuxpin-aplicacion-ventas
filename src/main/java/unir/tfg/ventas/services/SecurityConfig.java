@@ -48,10 +48,10 @@ class SecurityConfig extends KeycloakWebSecurityConfigurerAdapter
      */
     @Autowired
     public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
-        //legacyRolesServiceClient.getRoles("xrodrig");
+
         ApplicationAuthenticationProvider keycloakAuthenticationProvider = applicationKeycloakAuthenticationProvider();
 
-        // The service
+        // The service is passed to the provider
         keycloakAuthenticationProvider.setLegacyRolesServiceClient(legacyRolesServiceClient);
         keycloakAuthenticationProvider.setGrantedAuthoritiesMapper(new SimpleAuthorityMapper());
         auth.authenticationProvider(keycloakAuthenticationProvider);
@@ -75,6 +75,7 @@ class SecurityConfig extends KeycloakWebSecurityConfigurerAdapter
      * Rules to protect the application
      *
      * @param http
+     *
      * @throws Exception
      */
     @Override
@@ -86,9 +87,7 @@ class SecurityConfig extends KeycloakWebSecurityConfigurerAdapter
                 .antMatchers("/greeting*").hasRole("user")
                 .antMatchers("/userinfo*").hasRole("user")
                 .antMatchers("/app-profile*").hasRole("user")
+                .antMatchers("/admin-profile*").hasRole("ADMIN") // This role is provided by the legacy microservice
                 .anyRequest().permitAll();
     }
-
-
-
 }

@@ -8,6 +8,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.config.annotation.EnableWebMvc;
+import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import unir.tfg.ventas.model.Almacen;
 import unir.tfg.ventas.services.IAlmacenService;
 
@@ -77,9 +79,33 @@ public class VentasController {
         Map<String, Object> attributes = accessToken.getOtherClaims();
         //user.setCustomAttributes(otherClaims);
 
+        List<Almacen> almacenes = almacenService.findAll();
+
+        // Data from database
+        model.addAttribute("almacenes", almacenes);
+
         model.addAttribute("personalAttributes", attributes);
 
         return "app-profile";
+    }
+
+    @GetMapping("/admin-profile")
+    public String adminProfile(Model model, Principal principal) {
+
+        KeycloakAuthenticationToken keycloakAuthenticationToken = (KeycloakAuthenticationToken) principal;
+        AccessToken accessToken = keycloakAuthenticationToken.getAccount().getKeycloakSecurityContext().getToken();
+
+        model.addAttribute("username", accessToken.getGivenName());
+        model.addAttribute("nameSurnames", accessToken.getName());
+        model.addAttribute("email", accessToken.getEmail());
+        model.addAttribute("user", accessToken.getPreferredUsername());
+
+        Map<String, Object> attributes = accessToken.getOtherClaims();
+        //user.setCustomAttributes(otherClaims);
+
+        model.addAttribute("personalAttributes", attributes);
+
+        return "admin-profile";
     }
 
 }

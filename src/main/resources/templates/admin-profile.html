@@ -1,0 +1,27 @@
+<!DOCTYPE HTML>
+
+<html xmlns:th="https://www.thymeleaf.org" xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+</head>
+
+<body>
+
+<div class="container">
+  <span th:text="${username}"></span>
+  <span th:text="${nameSurnames}"></span>
+  <span class="mail-address" th:text="${personalAttributes.get('direccion')}"></span>
+  <span class="contact-email" th:text="${email}"></span>
+  <span class="phone-number" th:text="${personalAttributes.get('telefono')}"></span>
+  <span class="birth-date" th:text="${personalAttributes.get('fechaNacimiento')}"></span>
+  <span class="gender" th:text="${personalAttributes.get('genero')}"></span>
+</div>
+
+
+</body>
+
+</html>
