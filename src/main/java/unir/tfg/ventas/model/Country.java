@@ -20,6 +20,6 @@ public class Country {
 
     private String name;
 
-    private int description;
+    private String description;
 }
 

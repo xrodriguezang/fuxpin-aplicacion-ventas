@@ -1,6 +1,7 @@
 package unir.tfg.ventas.services;
 
 import unir.tfg.ventas.model.Almacen;
+import unir.tfg.ventas.model.Product;
 
 import java.util.List;
 
@@ -13,7 +14,12 @@ import java.util.List;
  * @author Xavier Rodríguez
  *
  */
-public interface IAlmacenService {
+public interface IProductService {
 
-    List<Almacen> findAll();
+    List<Product> getProductByColour (String color);
+
+    List<Product> getAllProducts();
+
+    List<Product> getById();
+
 }

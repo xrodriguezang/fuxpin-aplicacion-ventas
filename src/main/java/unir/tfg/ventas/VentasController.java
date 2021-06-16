@@ -1,5 +1,7 @@
 package unir.tfg.ventas;
 
+import lombok.extern.log4j.Log4j2;
+import lombok.extern.slf4j.Slf4j;
 import org.keycloak.adapters.springsecurity.token.KeycloakAuthenticationToken;
 import org.keycloak.representations.AccessToken;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,10 +10,10 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.servlet.config.annotation.EnableWebMvc;
-import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import unir.tfg.ventas.model.Almacen;
+import unir.tfg.ventas.model.Product;
 import unir.tfg.ventas.services.IAlmacenService;
+import unir.tfg.ventas.services.IProductService;
 
 import java.security.Principal;
 import java.util.List;
@@ -19,10 +21,14 @@ import java.util.Map;
 
 @Controller
 @EnableFeignClients   // It's necessary to use it in the SecurityConfig. It makes singleton instance.
+@Log4j2
 public class VentasController {
 
     @Autowired
     private IAlmacenService almacenService;
+
+    @Autowired
+    private IProductService productService;
 
     @GetMapping("/greeting")
     public String greeting(@RequestParam(name="name", required=false, defaultValue="World") String name, Model model) {
@@ -80,11 +86,15 @@ public class VentasController {
         //user.setCustomAttributes(otherClaims);
 
         List<Almacen> almacenes = almacenService.findAll();
+        List<Product> products = productService.getAllProducts();
 
         // Data from database
         model.addAttribute("almacenes", almacenes);
+        model.addAttribute("products", products);
 
         model.addAttribute("personalAttributes", attributes);
+
+        log.info("Almacenes total: {}, productos totales: {}", almacenes.size(), products.size());
 
         return "app-profile";
     }

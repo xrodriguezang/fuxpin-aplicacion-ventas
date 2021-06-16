@@ -145,9 +145,9 @@
                 </div>
             </div>
 
-            <canvas class="my-4 w-100" id="myChart" width="900" height="380"></canvas>
+            <canvas class="my-4 w-100" id="myChart" width="450" height="190"></canvas>
 
-            <h2>Últimos productos vendidos</h2>
+            <h2>Stock de productos</h2>
 
             <div class="table-responsive">
                 <table class="table table-striped table-sm">
@@ -155,16 +155,24 @@
                     <tr>
                         <th>#</th>
                         <th>Producto</th>
-                        <th>Descricción</th>
+                        <th>Cantidad</th>
                         <th>Color</th>
+                        <th>Descripción</th>
+                        <th>Localización</th>
                     </tr>
                     </thead>
                     <tbody>
-                    <tr>
-                        <td>2</td>
-                        <td>Tablón madera 4 * 20</td>
-                        <td>data</td>
-                        <td>placeholder</td>
+                    <tr th:each="product : ${products}">
+                        <td th:text="${product.id}"></td>
+                        <td th:text="${product.title}"></td>
+                        <td th:text="${product.quantity}"></td>
+                        <td th:text="${product.colour}"></td>
+                        <td th:text="${product.description}"></td>
+                        <td>
+                            <th:block th:each="almacen : ${product.almacenes}">
+                                <label th:text="${almacen.title}"> </label>
+                            </th:block>
+                        </td>
                     </tr>
                     </tbody>
                 </table>
@@ -182,9 +190,9 @@
                 </thead>
                 <tbody>
                 <tr th:each="almacen : ${almacenes}">
-                    <td th:text="${almacen.id}">#Id</td>
-                    <td th:text="${almacen.description}">Almacén</td>
-                    <td th:text="${almacen.squareMeter}">Metros cuadrados</td>
+                    <td th:text="${almacen.id}"></td>
+                    <td th:text="${almacen.description}"></td>
+                    <td th:text="${almacen.squareMeter}"></td>
                 </tr>
                 </tbody>
             </table>
