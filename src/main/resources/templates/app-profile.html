@@ -129,77 +129,90 @@
 
         <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
 
-            <div sec:authorize="hasRole('ADMIN')">
-                <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
-                    <h1 class="h2">Gráfico de ventas - Visibilidad con role admin - aplicación heredada</h1>
-                    <div class="btn-toolbar mb-2 mb-md-0">
-                        <div class="btn-group me-2">
-                            <button type="button" class="btn btn-sm btn-outline-secondary">Share</button>
-                            <button type="button" class="btn btn-sm btn-outline-secondary">Export</button>
+            <div class="row mb-2">
+                <div class="col-md-6">
+                    <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+                        <h1 class="h2">Ventas diarias</h1>
+                        <div class="btn-toolbar mb-2 mb-md-0">
+                            <div class="btn-group me-2">
+                                <button type="button" class="btn btn-sm btn-outline-secondary">Share</button>
+                                <button type="button" class="btn btn-sm btn-outline-secondary">Export</button>
+                            </div>
+                            <button type="button" class="btn btn-sm btn-outline-secondary dropdown-toggle">
+                                <span data-feather="calendar"></span>
+                                This week
+                            </button>
                         </div>
-                        <button type="button" class="btn btn-sm btn-outline-secondary dropdown-toggle">
-                            <span data-feather="calendar"></span>
-                            This week
-                        </button>
                     </div>
+
+                    <canvas class="my-4 w-100" id="myChart" width="450" height="190"></canvas>
+
+                </div>
+                <div class="col-md-6">
+                    <h2>Almacenes</h2>
+
+                    <table class="table table-sm table-bordered">
+                        <thead>
+                        <tr>
+                            <th scope="col">#</th>
+                            <th scope="col">Almacen</th>
+                            <th scope="col">Metros cuadrados</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr th:each="almacen : ${almacenes}">
+                            <td th:text="${almacen.id}"></td>
+                            <td th:text="${almacen.description}"></td>
+                            <td th:text="${almacen.squareMeter}"></td>
+                        </tr>
+                        </tbody>
+                    </table>
                 </div>
             </div>
 
-            <canvas class="my-4 w-100" id="myChart" width="450" height="190"></canvas>
+            <div sec:authorize="hasRole('ADMIN')">
 
-            <h2>Stock de productos</h2>
 
-            <div class="table-responsive">
-                <table class="table table-striped table-sm">
-                    <thead>
-                    <tr>
-                        <th>#</th>
-                        <th>Producto</th>
-                        <th>Cantidad</th>
-                        <th>Color</th>
-                        <th>Descripción</th>
-                        <th>Localización</th>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    <tr th:each="product : ${products}">
-                        <td th:text="${product.id}"></td>
-                        <td th:text="${product.title}"></td>
-                        <td th:text="${product.quantity}"></td>
-                        <td th:text="${product.colour}"></td>
-                        <td th:text="${product.description}"></td>
-                        <td>
-                            <th:block th:each="almacen : ${product.almacenes}">
-                                <label th:text="${almacen.title}"> </label>
-                            </th:block>
-                        </td>
-                    </tr>
-                    </tbody>
-                </table>
+                <h2>Stock de productos - Visualizado solo por el rol <b>ADMIN</b> - role heredado</h2>
+
+                <div class="table-responsive">
+                    <table class="table table-striped table-sm">
+                        <thead>
+                        <tr>
+                            <th>#</th>
+                            <th>Producto</th>
+                            <th>Cantidad</th>
+                            <th>Color</th>
+                            <th>Descripción</th>
+                            <th>Localización</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr th:each="product : ${products}">
+                            <td th:text="${product.id}"></td>
+                            <td th:text="${product.title}"></td>
+                            <td th:text="${product.quantity}"></td>
+                            <td th:text="${product.colour}"></td>
+                            <td th:text="${product.description}"></td>
+                            <td>
+                                <th:block th:each="almacen : ${product.almacenes}">
+                                    <label th:text="${almacen.title}"> </label>
+                                </th:block>
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+
             </div>
-
-            <h2>Almacenes</h2>
-
-            <table class="table table-sm table-bordered">
-                <thead>
-                <tr>
-                    <th scope="col">#</th>
-                    <th scope="col">Almacen</th>
-                    <th scope="col">Metros cuadrados</th>
-                </tr>
-                </thead>
-                <tbody>
-                <tr th:each="almacen : ${almacenes}">
-                    <td th:text="${almacen.id}"></td>
-                    <td th:text="${almacen.description}"></td>
-                    <td th:text="${almacen.squareMeter}"></td>
-                </tr>
-                </tbody>
-            </table>
 
 
         </main>
+
+
     </div>
+
+
 </div>
 
 
