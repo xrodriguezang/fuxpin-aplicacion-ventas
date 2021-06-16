@@ -1,0 +1,12 @@
+-- After data-postgresql is executed, data-postgre.sql is executed
+
+INSERT INTO ALMACEN( DESCRIPTION, SQUARE_METER ) VALUES('Almacen 1 - pinturas variadas - pequeño material de carpintería', 4000);
+INSERT INTO ALMACEN( DESCRIPTION, SQUARE_METER ) VALUES('Almacen 2 - Maderas', 4000);
+INSERT INTO ALMACEN( DESCRIPTION, SQUARE_METER ) VALUES('Almacen 3 - Herramientas', 4000);
+
+--INSERT INTO public.product(id, colour, description, prize, title, quantity) VALUES (1, 'Azul', 'Silla Escriporio', 134.99, 'Silla Escritorio modelo Reptil', 20);
+
+INSERT INTO public.product_almacenes(product_id, almacenes_id) VALUES (1, 2);
+INSERT INTO public.product_almacenes(product_id, almacenes_id) VALUES (2, 2);
+INSERT INTO public.product_almacenes(product_id, almacenes_id) VALUES (3, 2);
+
