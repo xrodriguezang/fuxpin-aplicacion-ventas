@@ -56,13 +56,13 @@
 
 <div class="container-fluid">
     <div class="row">
+
         <nav id="sidebarMenu" class="col-md-3 col-lg-2 d-md-block bg-light sidebar collapse">
             <div class="position-sticky pt-3">
                 <ul class="nav flex-column">
                     <li class="nav-item">
                         <a class="nav-link active" aria-current="page" href="#">
                             <span data-feather="home"></span>
-                            <span th:text="'Hello, ' + ${username} + '!'"/>
                         </a>
                     </li>
                     <li class="nav-item">
@@ -91,33 +91,15 @@
 
         <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4" style="margin-top: 20px;">
 
-            <div class="container">
-                <div class="row g-0 border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
-                    <div class="col p-4 d-flex flex-column position-static">
-                        <strong class="d-inline-block mb-3 text-primary">Datos recibidos de Keycloak</strong>
-                        <h3 class="mb-0"><span th:text="${nameSurnames}"></span></h3>
-                        <hr>
-                        <p class="card-text mb-auto"><b>Dirección: </b><span
-                                th:text="${personalAttributes.get('direccion')}"></span>
-                        <p class="card-text mb-auto"><b>Correo Electrónico: </b><span th:text="${email}"></span>
-                        <p class="card-text mb-auto"><b>Teléfono: </b><span
-                                th:text="${personalAttributes.get('telefono')}"></span>
-                        <p class="card-text mb-auto"><b>Fecha nacimiento: </b><span
-                                th:text="${personalAttributes.get('fechaNacimiento')}"></span>
-                    </div>
-                    <div class="col-auto d-none d-lg-block">
-                        <svg class="bd-placeholder-img" width="200" height="250" xmlns="http://www.w3.org/2000/svg"
-                             role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice"
-                             focusable="false"><title>Placeholder</title>
-                            <rect width="100%" height="100%" fill="#55595c"/>
-                            <text x="50%" y="50%" fill="#eceeef" dy=".3em">Thumbnail</text>
-                        </svg>
-
-                    </div>
-                </div>
+            <div class="alert alert-info alert-dismissible fade show" role="alert">
+                <h2>Página no encontrada</h2>
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
             </div>
+
         </main>
+
     </div>
+
 </div>
 
 
@@ -132,4 +114,3 @@
 <script src="assets/dist/js/dashboard.js"></script>
 </body>
 </html>
-e

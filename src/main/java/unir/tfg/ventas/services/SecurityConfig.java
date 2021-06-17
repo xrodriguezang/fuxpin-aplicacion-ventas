@@ -84,8 +84,10 @@ class SecurityConfig extends KeycloakWebSecurityConfigurerAdapter
         super.configure(http);
         http
                 .authorizeRequests()
-                .antMatchers("/greeting*", "/userinfo*", "/user-profile*", "/manager-sales*").hasRole("USER")
-                .antMatchers("/admin-clients*").hasRole("ADMIN") // This role is provided by the legacy microservice (legacy role)
-                .anyRequest().permitAll();
+                .antMatchers("/error*").authenticated()
+                .antMatchers("/user-profile*", "/manager-sales*").hasRole("USER")
+                .antMatchers("/clients-admin*").hasRole("ADMIN") // This role is provided by the legacy microservice (legacy role)
+                .and()
+                .exceptionHandling().accessDeniedPage("/page-denied");
     }
 }
