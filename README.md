@@ -2,7 +2,7 @@
 
 Application secured with Spring Security to Keycloak.
 
-Once the credentials are validated, the authentication is validated correctly. Keycloak then provides the user attributes and Spring Security puts them in the Principal Object.
+Once the credentials are validated, the authentication is successful. Keycloak then provides the user attributes and Spring Security puts them in the Principal Object.
 
 Roles are defined in the Keycloak console administration. They are also finally sent to the app via Spring Security. Just before that, Spring Security connects to the Eureka Netflix server to get the roles of the legacy application through a microservice.
 
