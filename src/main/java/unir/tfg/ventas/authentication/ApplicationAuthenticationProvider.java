@@ -56,7 +56,7 @@ public class ApplicationAuthenticationProvider extends KeycloakAuthenticationPro
         grantedAuthorities.addAll(addUserSpecificAuthoritiesFromLegacy(token));
 
         for (String role : token.getAccount().getRoles()) {
-            grantedAuthorities.add(new KeycloakRole(role));
+            grantedAuthorities.add(new KeycloakRole(role.toUpperCase()));
         }
 
         return new KeycloakAuthenticationToken(token.getAccount(), token.isInteractive(), mapAuthorities(grantedAuthorities));

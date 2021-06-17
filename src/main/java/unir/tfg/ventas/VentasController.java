@@ -71,8 +71,8 @@ public class VentasController {
         return "userInfoDetails";
     }
 
-    @GetMapping("/app-profile")
-    public String userProfile(Model model, Principal principal) {
+    @GetMapping("/manager-sales")
+    public String manageSales(Model model, Principal principal) {
 
         KeycloakAuthenticationToken keycloakAuthenticationToken = (KeycloakAuthenticationToken) principal;
         AccessToken accessToken = keycloakAuthenticationToken.getAccount().getKeycloakSecurityContext().getToken();
@@ -96,11 +96,11 @@ public class VentasController {
 
         log.info("Almacenes total: {}, productos totales: {}", almacenes.size(), products.size());
 
-        return "app-profile";
+        return "manager-sales";
     }
 
-    @GetMapping("/admin-profile")
-    public String adminProfile(Model model, Principal principal) {
+    @GetMapping("/user-profile")
+    public String userProfile(Model model, Principal principal) {
 
         KeycloakAuthenticationToken keycloakAuthenticationToken = (KeycloakAuthenticationToken) principal;
         AccessToken accessToken = keycloakAuthenticationToken.getAccount().getKeycloakSecurityContext().getToken();
@@ -115,7 +115,7 @@ public class VentasController {
 
         model.addAttribute("personalAttributes", attributes);
 
-        return "admin-profile";
+        return "user-profile";
     }
 
 }
