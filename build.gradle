@@ -20,21 +20,61 @@ repositories {
 	mavenCentral()
 }
 
+ext {
+	set('springCloudVersion', "2020.0.2")
+}
+
+
 dependencies {
+	// To connect to database
 	implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
-	//implementation 'org.springframework.boot:spring-boot-starter-security'
+
+
+	// By default, its implements basic authentication.
+	implementation 'org.springframework.boot:spring-boot-starter-security'
+
+	// Use in thymeleaf the acces control by roles
+	implementation 'org.thymeleaf.extras:thymeleaf-extras-springsecurity5'
+
+	// Keycloak starter
+	implementation 'org.keycloak:keycloak-spring-boot-starter:12.0.4'
+
 	implementation 'org.springframework.boot:spring-boot-starter-thymeleaf'
 	implementation 'org.springframework.boot:spring-boot-starter-web'
+
+    // Starter to became a Spring Cloud Config Client
+	implementation 'org.springframework.cloud:spring-cloud-starter-config'
+
+	// By default is not activated. It is activated to get the properties of Spring Cloud Config - Server
+	implementation 'org.springframework.cloud:spring-cloud-starter-bootstrap'
+
 	developmentOnly 'org.springframework.boot:spring-boot-devtools'
+
 	//implementation 'org.thymeleaf.extras:thymeleaf-extras-springsecurity5'
+
 	compileOnly 'org.projectlombok:lombok'
+
 	runtimeOnly 'org.postgresql:postgresql'
+
 	annotationProcessor 'org.projectlombok:lombok'
+
 	providedRuntime 'org.springframework.boot:spring-boot-starter-tomcat'
+
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
 	//testImplementation 'org.springframework.security:spring-security-test'
 
-	println("- Aplicación de Ventas ensambled correctly - ")
+	// Modules to became client of Fuxpin Eureka Server
+	implementation 'org.springframework.cloud:spring-cloud-starter-netflix-eureka-client'
+
+	implementation group: 'org.springframework.cloud', name: 'spring-cloud-starter-feign', version: '1.4.7.RELEASE'
+
+	println("- Application Ventas ensambled correctly - ")
+}
+
+dependencyManagement {
+	imports {
+		mavenBom "org.springframework.cloud:spring-cloud-dependencies:${springCloudVersion}"
+	}
 }
 
 test {

@@ -1,0 +1,9 @@
+spring:
+  cloud:
+    config:
+      # user + password Config Cloud Config Server
+      username: ${cloud.config.rest.user}
+      password: ${cloud.config.rest.password}
+
+      # file configuration in Spring Cloud Config Server
+      name: fuxpin-aplicacionventas

@@ -1,0 +1,8 @@
+spring:
+  cloud:
+    config:
+      uri: https://pi.intranet.cat:8446/fuxpin-config-server/
+      # Bracnh - master
+      label: master
+  config:
+    import: configserver:https://pi.intranet.cat:8446/fuxpin-config-server/

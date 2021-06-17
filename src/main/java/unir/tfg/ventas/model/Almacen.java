@@ -5,15 +5,21 @@ import lombok.Setter;
 
 import javax.persistence.*;
 
+/**
+ * JPA - Entity - Almacen
+ *
+ * @author Xavier Rodríguez
+ */
 @Entity
-@Table (name = "ALMAZEN_FIGOLERS")
+@Table (name = "ALMACEN")
 @Getter @Setter
-public class AlmazenFigolers {
+public class Almacen {
 
     @Id
     @GeneratedValue (strategy =  GenerationType.AUTO)
     private long id;
 
+    private String title;
     private String description;
 
     private int squareMeter;
