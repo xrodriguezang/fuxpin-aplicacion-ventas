@@ -1,6 +1,6 @@
 # fuxpin-aplicacion-ventas
 
-Application secured with Spring Security to Keycloak.
+Application secured with Spring Security integrated with Keycloak.
 
 Once the credentials are validated, the authentication is successful. Keycloak then provides the user attributes and Spring Security puts them in the Principal Object.
 
