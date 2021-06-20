@@ -1,20 +1,113 @@
 # fuxpin-aplicacion-ventas
 
-Application integrated with Keycloak.
+Application secured with Spring Security to Keycloak.
+
+Once the credentials are validated, the authentication is successful. Keycloak then provides the user attributes and Spring Security puts them in the Principal Object.
+
+Roles are defined in the Keycloak console administration. They are also finally sent to the app via Spring Security. Just before that, Spring Security connects to the Eureka Netflix server to get the roles of the legacy application through a microservice.
+
+Eureka Netflix Server implements a Black Box Modernization using a layer of microservices. This layer provides any interaction with the old application.
+
+# Related projects
++ [fuxpin-eureka-server](https://github.com/xrodriguezang/fuxpin-eureka-server) &#8594; Microservices Layer
++ [fuxpin-legacy-ventas-rol-microservic](https://github.com/xrodriguezang/fuxpin-legacy-ventas-rol-microservice) &#8594; Microservice that provides legacy roles
++ [fuxpin-cloud-config-server](https://github.com/xrodriguezang/fuxpin-cloud-config-server) &#8594; Provides application settings
 
 # This project Uses
 
-|Tecnology|Tecnology|
-|---|---|
-|<img src="https://spring.io/images/spring-logo-9146a4d3298760c2e7e49595184e1975.svg" width="200"></br>  |  <img src="https://upload.wikimedia.org/wikipedia/commons/2/29/Postgresql_elephant.svg" width="60"></br> |
-|&#8594; Spring Boot</br>&#8594; Spring Cloud Config Server</br>&#8594; Spring Eureka Netflix Server</br>&#8594; Spring Data - JPA</br>&#8594; Spring Security|&#8594; *with* PostgreSQL|
-| <img src="https://cdn.worldvectorlogo.com/logos/bootstrap-5-1.svg" width="70"></br>  |  <img src="https://www.keycloak.org/resources/images/keycloak_logo_480x108.png" width="180"></br> |
-|&#8594; Boostrap 5|&#8594; Integrated with Keycloak|
+|Tecnology|Tecnology|Tecnology|
+|---|---|---|
+|<img src="https://spring.io/images/spring-logo-9146a4d3298760c2e7e49595184e1975.svg" width="200"></br>  |  <img src="https://upload.wikimedia.org/wikipedia/commons/2/29/Postgresql_elephant.svg" width="60"></br> | <img src="https://cdn.worldvectorlogo.com/logos/bootstrap-5-1.svg" width="70">|
+|&#8594; Spring Boot</br>&#8594; Spring Cloud Config Server</br>&#8594; Spring Eureka Netflix Server</br>&#8594; Spring Data - JPA</br>&#8594; Spring Security|&#8594; *with* PostgreSQL|&#8594; Boostrap 5|
+|  <img src="https://www.keycloak.org/resources/images/keycloak_logo_480x108.png" width="180"></br> |<img src="https://www.thymeleaf.org/images/thymeleaf.png" width="70">|<img src="https://cdn.icon-icons.com/icons2/2107/PNG/512/file_type_light_gradle_icon_130462.png" width="70">|
+|&#8594; Integrated with Keycloak|&#8594; Thymeleaf| builded with Gradle|
 
-# Define Environment
+# Environment variables
 
-VM Options &#8594; *-Dspring.profiles.active=production|localhost*
+In Spring Boot task &#8594;  ***VM options*** define:
+````
+-Dspring.profiles.active=production|localhost 
+-Deureka.user=user
+-Deureka.password=password 
+-Dkeystore.password=password 
+-Dcloud.config.rest.user=user 
+-Dcloud.config.rest.password=password 
+-Dpostgresql.user=user 
+-Dpostgresql.password=password
+````
+# *Serverless* execution
 
+* default (localhost):
+
+``C:\Users\amgri\.jdks\jdk-11.0.7\bin\java -jar -Dspring.profiles.active=localhost -Deureka.user=user -Deureka.password=password -Dkeystore.password=password -Dcloud.config.rest.user=user -Dcloud.config.rest.password=password -Dpostgresql.user=user -Dpostgresql.password=password .\ventas-0.0.1.war``
+
+* production:
+
+``C:\Users\amgri\.jdks\jdk-11.0.7\bin\java -jar -Dspring.profiles.active=production -Deureka.user=user -Deureka.password=password -Dkeystore.password=password -Dcloud.config.rest.user=user -Dcloud.config.rest.password=password -Dpostgresql.user=user -Dpostgresql.password=password .\ventas-0.0.1.war``
+
+````
+$ gradew clean assemble
+````
+jar location
+````
+${PROJECT_DIRECTORY}/build/libs/
+````
+
+## Create a Run Java Jar Application with Systemd
+* For this configuration *pi* user is used to run the *serveless* installation. Before proced, create a directory:
+````
+/opt/java-jar 
+````
+Give the user ang group ownership permissions for the Fuxpin Systems Jars:
+````
+sudo chown -R pi:pi /opt/java-jars 
+````
+* Create Systemd Service
+````
+sudo vi /etc/systemd/system/aplicacionventas.service
+````
+with contents:
+````editorconfig
+[Unit]
+Description=Fuxpin Legacy Ventas Role Microservice
+
+[Service]
+WorkingDirectory=/opt/java-jars
+ExecStart=java -Xms128m -Xmx256m -jar -Dspring.profiles.active=production -Deureka.user=user -Deureka.password=password -Dkeystore.password=password -Dcloud.config.rest.user=user -Dcloud.config.rest.password=password -Dpostgresql.user=user -Dpostgresql.password=password fuxpin-aplicacionventas-0.0.1.war
+User=pi
+Type=simple
+Restart=on-failure
+
+[Install]
+WantedBy=multi-user.target
+````
+
+* Before start the application, reload systemd so that it knows ot the new service added:
+
+````
+sudo systemctl daemon-reload
+````
+* Once realoaded, the service is avaliable:
+
+````
+sudo systemctl start aplicacionventas
+````
+* To stop the service-application:
+
+````
+sudo systemctl stop aplicacionventas
+````
+
+* To restart the service-application:
+
+````
+sudo systemctl restart aplicacionventas
+````
+
+* To enable the service on startup server boot:
+````
+sudo systemctl enable aplicacionventas
+````
 
 # More info:
 
