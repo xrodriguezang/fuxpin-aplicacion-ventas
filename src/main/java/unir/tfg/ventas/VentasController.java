@@ -33,6 +33,28 @@ public class VentasController {
     @Autowired
     private IClientService clientService;
 
+    // Home page application
+    @GetMapping("/")
+    public String homePage (Model model, Principal principal) {
+        KeycloakAuthenticationToken keycloakAuthenticationToken = (KeycloakAuthenticationToken) principal;
+        AccessToken accessToken = keycloakAuthenticationToken.getAccount().getKeycloakSecurityContext().getToken();
+
+        log.info("Usuario accede a la página del perfil: {}", accessToken.getPreferredUsername());
+
+
+        model.addAttribute("username", accessToken.getGivenName());
+        model.addAttribute("nameSurnames", accessToken.getName());
+        model.addAttribute("email", accessToken.getEmail());
+        model.addAttribute("user", accessToken.getPreferredUsername());
+
+        Map<String, Object> attributes = accessToken.getOtherClaims();
+
+        // Return all the customized-attributes of Keycloak
+        model.addAttribute("personalAttributes", attributes);
+
+        return "user-profile";
+    }
+
    @GetMapping("/manager-sales")
     public String manageSales(Model model, Principal principal) {
 
