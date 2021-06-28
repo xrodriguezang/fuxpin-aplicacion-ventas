@@ -22,11 +22,17 @@
                         Gestión de ventas
                     </a>
                 </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="clients-admin">
+                        <span data-feather="users"></span>
+                        Clientes
+                    </a>
+                </li>
                 <div sec:authorize="hasRole('ADMIN')">
                     <li class="nav-item">
-                        <a class="nav-link" href="clients-admin">
+                        <a class="nav-link" href="clients-legacy-admin">
                             <span data-feather="users"></span>
-                            Clientes
+                            Clientes - Aplicación Heredada
                         </a>
                     </li>
                 </div>

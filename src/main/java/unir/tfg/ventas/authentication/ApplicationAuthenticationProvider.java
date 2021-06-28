@@ -12,8 +12,7 @@ import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.mapping.GrantedAuthoritiesMapper;
 import unir.tfg.ventas.contract.LegacyRolesServiceClient;
-import unir.tfg.ventas.model.microservice.Alive;
-import unir.tfg.ventas.model.microservice.Role;
+import unir.tfg.ventas.model.legacy.microservice.Role;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -28,7 +27,7 @@ import java.util.List;
  * @author Xavier Rodríguez
  */
 @Slf4j
-public class ApplicationAuthenticationProvider extends KeycloakAuthenticationProvider implements LegacyRolesServiceClient {
+public class ApplicationAuthenticationProvider extends KeycloakAuthenticationProvider {
 
     // This Service is
     private LegacyRolesServiceClient legacyRolesServiceClient;
@@ -109,21 +108,6 @@ public class ApplicationAuthenticationProvider extends KeycloakAuthenticationPro
         return grantedAuthoritiesMapper != null
                 ? grantedAuthoritiesMapper.mapAuthorities(authorities)
                 : authorities;
-    }
-
-
-    @Override
-    public ResponseEntity<Alive> imAlive() {
-        return null;
-    }
-
-    @Override
-    public ResponseEntity<List<Role>> getRoles(String id) {
-        return this.getRoles("xrodrig");
-    }
-
-    public LegacyRolesServiceClient getLegacyRolesServiceClient() {
-        return legacyRolesServiceClient;
     }
 
     public void setLegacyRolesServiceClient(LegacyRolesServiceClient legacyRolesServiceClient) {
