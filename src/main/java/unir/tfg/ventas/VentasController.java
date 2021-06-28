@@ -5,9 +5,12 @@ import org.keycloak.adapters.springsecurity.token.KeycloakAuthenticationToken;
 import org.keycloak.representations.AccessToken;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cloud.openfeign.EnableFeignClients;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import unir.tfg.ventas.contract.LegacyClientsServiceClient;
 import unir.tfg.ventas.model.Almacen;
 import unir.tfg.ventas.model.Client;
 import unir.tfg.ventas.model.Product;
@@ -20,9 +23,12 @@ import java.util.List;
 import java.util.Map;
 
 @Controller
-@EnableFeignClients   // It's necessary to use it in the SecurityConfig. It makes singleton instance.
+@EnableFeignClients   // It's necessary to use it in the SecurityConfig too. It makes singleton instance.
 @Log4j2
 public class VentasController {
+
+    @Autowired
+    LegacyClientsServiceClient legacyClientsServiceClient;
 
     @Autowired
     private IAlmacenService almacenService;
@@ -120,6 +126,27 @@ public class VentasController {
         model.addAttribute("clientes", clients);
 
         return "clients-admin";
+    }
+
+    @GetMapping("/clients-legacy-admin")
+    public String adminClients2 (Model model, Principal principal) {
+
+        KeycloakAuthenticationToken keycloakAuthenticationToken = (KeycloakAuthenticationToken) principal;
+        AccessToken accessToken = keycloakAuthenticationToken.getAccount().getKeycloakSecurityContext().getToken();
+
+        model.addAttribute("username", accessToken.getGivenName());
+        model.addAttribute("nameSurnames", accessToken.getName());
+
+        ResponseEntity<List<unir.tfg.ventas.model.legacy.microservice.Client>> responseLegacyClients = legacyClientsServiceClient.getClients();
+
+        if (responseLegacyClients.getStatusCode() == HttpStatus.OK) {
+            log.debug("Legacy roles from user: {} response: {}", accessToken.getPreferredUsername(), responseLegacyClients.getBody());
+        }
+
+        // Data from database
+        model.addAttribute("clientes", responseLegacyClients.getBody());
+
+        return "clients-legacy-admin";
     }
 
     @GetMapping("/page-denied")

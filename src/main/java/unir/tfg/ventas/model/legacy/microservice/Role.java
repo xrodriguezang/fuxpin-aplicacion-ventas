@@ -1,4 +1,4 @@
-package unir.tfg.ventas.model.microservice;
+package unir.tfg.ventas.model.legacy.microservice;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
