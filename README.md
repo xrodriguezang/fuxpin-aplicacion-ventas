@@ -1,10 +1,13 @@
 # fuxpin-aplicacion-ventas
 
-Application secured with Spring Security integrated with Keycloak.
+Application secured by Spring Security integrated with Keycloak.
 
-Once the credentials are validated, the authentication is successful. Keycloak then provides the user attributes and Spring Security puts them in the Principal Object.
+Once the credentials are validated by keycloak, the authentication is successful. 
+Keycloak provides:
+* user Attributes 
+* user Roles
 
-Roles are defined in the Keycloak console administration. They are also finally sent to the app via Spring Security. Just before that, Spring Security connects to the Eureka Netflix server to get the roles of the legacy application through a microservice.
+Roles are defined in Keycloak console administration. They are also finally sent to the app via Spring Security. Just before that, Spring Security connects to the Eureka Netflix server to get the roles of the legacy application through a microservice.
 
 Eureka Netflix Server implements a Black Box Modernization using a layer of microservices. This layer provides any interaction with the old application.
 
@@ -33,25 +36,25 @@ The application has two main roles:
 + admin &#8594; provided by microservices Layer - Legacy application (fuxpin-legacy-ventas-rol-microservice)
 + user &#8594; provided by keycloak
 
-An user that has admin role can view:
+An user with admin role can view:
 
 url: https://xrodrig.dnsnet.info:8444/ventas/manager-sales
 
 <img src="https://raw.githubusercontent.com/xrodriguezang/fuxpin-aplicacion-ventas/main/src/main/resources/imageDocs/roleAdmin.PNG" width="800">
 
-An user that has has admin user can view:
+An user with user role can view:
 
 url: https://xrodrig.dnsnet.info:8444/ventas/manager-sales
 
 <img src="https://raw.githubusercontent.com/xrodriguezang/fuxpin-aplicacion-ventas/main/src/main/resources/imageDocs/roleUser.PNG" width="800">
 
-View that shows the legacy clients. Only admin user can see this page:
+Action that shows the legacy clients. Only admin role can see this view:
 
 url: https://xrodrig.dnsnet.info:8444/ventas/clients-legacy-admin
 
 <img src="https://raw.githubusercontent.com/xrodriguezang/fuxpin-aplicacion-ventas/main/src/main/resources/imageDocs/adminActionClients.PNG" width="800">
 
-When an user with only role user acces to he before view:
+An user with only user role can't access to this view:
 
 url: https://xrodrig.dnsnet.info:8444/ventas/clients-legacy-admin
 
