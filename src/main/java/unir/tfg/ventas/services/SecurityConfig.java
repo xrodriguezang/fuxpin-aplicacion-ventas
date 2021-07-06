@@ -20,15 +20,10 @@ import unir.tfg.ventas.authentication.ApplicationAuthenticationProvider;
 import unir.tfg.ventas.contract.LegacyRolesServiceClient;
 
 /**
- * The same object that provides the microservice
- *
- * Object that contains the role of the user.
- *
- * It's roles is added to fuxpin-applicacionventas
+ * - Provides the microservice
+ * - rules securization
  *
  * @author Xavier Rodríguez
- *
- * EnableFeignClients -> Injects the implementation Rest of the microservice
  *
  */
 @Configuration
@@ -74,6 +69,9 @@ class SecurityConfig extends KeycloakWebSecurityConfigurerAdapter
     /**
      * Rules to protect the application
      *
+     * role user: provided by Keycloak
+     * role admin: provided by Legacy Application
+     *
      * @param http
      *
      * @throws Exception
@@ -86,7 +84,7 @@ class SecurityConfig extends KeycloakWebSecurityConfigurerAdapter
                 .authorizeRequests()
                 .antMatchers("/error*").authenticated()
                 .antMatchers("/user-profile*", "/manager-sales*").hasRole("USER")
-                .antMatchers("/clients-admin*").hasRole("USER") // This role is provided by the legacy microservice (legacy role)
+                .antMatchers("/clients-admin*").hasRole("USER") // This role is provided by keycloak
                 .antMatchers("/clients-legacy-admin*").hasRole("ADMIN") // This role is provided by the legacy microservice (legacy role)
                 .and()
                 .exceptionHandling().accessDeniedPage("/page-denied");

@@ -70,25 +70,26 @@ public class ApplicationAuthenticationProvider extends KeycloakAuthenticationPro
      */
     protected Collection<? extends GrantedAuthority> addUserSpecificAuthoritiesFromLegacy(KeycloakAuthenticationToken token ) {
 
-        // potentially add user specific authentication, lookup from internal database
-        // etc...
-
-        AccessToken accessToken = token.getAccount().getKeycloakSecurityContext().getToken();
-
         List<GrantedAuthority> result = new ArrayList<>();
 
-        ResponseEntity<List<Role>> responseLegacyRole = legacyRolesServiceClient.getRoles(accessToken.getPreferredUsername());
+        try {
+            AccessToken accessToken = token.getAccount().getKeycloakSecurityContext().getToken();
 
-        if (responseLegacyRole.getStatusCode() == HttpStatus.OK) {
-            log.debug("Legacy roles from user: {} response: {}", accessToken.getPreferredUsername(), responseLegacyRole.getBody());
-        }
+            ResponseEntity<List<Role>> responseLegacyRole = legacyRolesServiceClient.getRoles(accessToken.getPreferredUsername());
 
-        // Although it recieves the role with pattern: ROLE_XXXXXXX. When it is saved to the Granted Authority, all the roles are provided with this prefix.
-        // If it is recieved without this prefix, then Granted Authority adds it.
-        for (Role role : responseLegacyRole.getBody())
-        {
-            log.debug("Role injected to user: {}, KeycloackRole: {}", accessToken.getPreferredUsername(), role.getRoleId());
-            result.add(new KeycloakRole(role.getRoleId()));
+            if (responseLegacyRole.getStatusCode() == HttpStatus.OK) {
+                log.debug("Legacy roles from user: {} response: {}", accessToken.getPreferredUsername(), responseLegacyRole.getBody());
+            }
+
+            // Although it recieves the role with pattern: ROLE_XXXXXXX. When it is saved to the Granted Authority, all the roles are provided with this prefix.
+            // If it is recieved without this prefix, then Granted Authority adds it.
+            for (Role role : responseLegacyRole.getBody()) {
+                log.debug("Role injected to user: {}, KeycloackRole: {}", accessToken.getPreferredUsername(), role.getRoleId());
+                result.add(new KeycloakRole(role.getRoleId()));
+            }
+
+        } catch (Exception e) {
+            log.error("Problems with the legacy microservice!", e);
         }
 
         return result;
