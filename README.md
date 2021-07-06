@@ -31,11 +31,11 @@ The application has two main roles:
 
 An user that has has admin role can view:
 
-<img src="https://spring.io/images/spring-logo-9146a4d3298760c2e7e49595184e1975.svg" width="200">
+<img src="https://raw.githubusercontent.com/xrodriguezang/fuxpin-aplicacion-ventas/9a6f9698c5d30007f0a56ede8aa31922fea7bc31/src/main/resources/imageDocs/roleAdmin.PNG" width="500">
 
 An user that has has admin user can view:
 
-<img src="https://spring.io/images/spring-logo-9146a4d3298760c2e7e49595184e1975.svg" width="200">
+<img src="https://raw.githubusercontent.com/xrodriguezang/fuxpin-aplicacion-ventas/9a6f9698c5d30007f0a56ede8aa31922fea7bc31/src/main/resources/imageDocs/roleUser.PNG" width="500">
 
 # Environment variables
 
