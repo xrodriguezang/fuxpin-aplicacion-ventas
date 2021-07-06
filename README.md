@@ -38,25 +38,25 @@ The application has two main roles:
 
 An user with admin role can view:
 
-url: https://xrodrig.dnsnet.info:8444/ventas/manager-sales
+url: https://tfc.dnsnet.info:8444/ventas/manager-sales
 
 <img src="https://raw.githubusercontent.com/xrodriguezang/fuxpin-aplicacion-ventas/main/src/main/resources/imageDocs/roleAdmin.PNG" width="800">
 
 An user with user role can view:
 
-url: https://xrodrig.dnsnet.info:8444/ventas/manager-sales
+url: https://tfc.dnsnet.info:8444/ventas/manager-sales
 
 <img src="https://raw.githubusercontent.com/xrodriguezang/fuxpin-aplicacion-ventas/main/src/main/resources/imageDocs/roleUser.PNG" width="800">
 
 Action that shows the legacy clients. Only admin role can see this view:
 
-url: https://xrodrig.dnsnet.info:8444/ventas/clients-legacy-admin
+url: https://tfc.dnsnet.info:8444/ventas/clients-legacy-admin
 
 <img src="https://raw.githubusercontent.com/xrodriguezang/fuxpin-aplicacion-ventas/main/src/main/resources/imageDocs/adminActionClients.PNG" width="800">
 
 An user with only user role can't access to this view:
 
-url: https://xrodrig.dnsnet.info:8444/ventas/clients-legacy-admin
+url: https://tfc.dnsnet.info:8444/ventas/clients-legacy-admin
 
 <img src="https://raw.githubusercontent.com/xrodriguezang/fuxpin-aplicacion-ventas/main/src/main/resources/imageDocs/notAllowed.PNG" width="800">
 
