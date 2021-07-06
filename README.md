@@ -10,8 +10,9 @@ Eureka Netflix Server implements a Black Box Modernization using a layer of micr
 
 # Related projects
 + [fuxpin-eureka-server](https://github.com/xrodriguezang/fuxpin-eureka-server) &#8594; Microservices Layer
-+ [fuxpin-legacy-ventas-rol-microservic](https://github.com/xrodriguezang/fuxpin-legacy-ventas-rol-microservice) &#8594; Microservice that provides legacy roles
 + [fuxpin-cloud-config-server](https://github.com/xrodriguezang/fuxpin-cloud-config-server) &#8594; Provides application settings
++ [fuxpin-legacy-ventas-rol-microservice](https://github.com/xrodriguezang/fuxpin-legacy-ventas-rol-microservice) &#8594; Microservice that provides legacy roles
++ [fuxpin-legacy-ventas-client-microservice](https://github.com/xrodriguezang/fuxpin-legacy-ventas-client-microservice) &#8594; Microservice that provides legacy clients
 
 # This project Uses
 
@@ -21,6 +22,20 @@ Eureka Netflix Server implements a Black Box Modernization using a layer of micr
 |&#8594; Spring Boot</br>&#8594; Spring Cloud Config Server</br>&#8594; Spring Eureka Netflix Server</br>&#8594; Spring Data - JPA</br>&#8594; Spring Security|&#8594; *with* PostgreSQL|&#8594; Boostrap 5|
 |  <img src="https://www.keycloak.org/resources/images/keycloak_logo_480x108.png" width="180"></br> |<img src="https://www.thymeleaf.org/images/thymeleaf.png" width="70">|<img src="https://cdn.icon-icons.com/icons2/2107/PNG/512/file_type_light_gradle_icon_130462.png" width="70">|
 |&#8594; Integrated with Keycloak|&#8594; Thymeleaf| builded with Gradle|
+
+# Application roles
+The application has two main roles:
+
++ admin &#8594; provided by microservices Layer
++ user &#8594; provided by keycloak
+
+An user that has has admin role can view:
+
+<img src="https://spring.io/images/spring-logo-9146a4d3298760c2e7e49595184e1975.svg" width="200">
+
+An user that has has admin user can view:
+
+<img src="https://spring.io/images/spring-logo-9146a4d3298760c2e7e49595184e1975.svg" width="200">
 
 # Environment variables
 

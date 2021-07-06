@@ -22,6 +22,12 @@ import java.security.Principal;
 import java.util.List;
 import java.util.Map;
 
+/**
+ * Actions - application. Implements pattern MVC.
+ *
+ * @author Xavier Rodríguez
+ *
+ */
 @Controller
 @EnableFeignClients   // It's necessary to use it in the SecurityConfig too. It makes singleton instance.
 @Log4j2
@@ -61,7 +67,16 @@ public class VentasController {
         return "user-profile";
     }
 
-   @GetMapping("/manager-sales")
+    /**
+     * Action to show the manager sales
+     * Get the user properties from AccessToken -> Keycloak
+     * products, almaxcenes from database -> from
+     *
+     * @param model
+     * @param principal
+     * @return
+     */
+    @GetMapping("/manager-sales")
     public String manageSales(Model model, Principal principal) {
 
         KeycloakAuthenticationToken keycloakAuthenticationToken = (KeycloakAuthenticationToken) principal;
@@ -89,6 +104,14 @@ public class VentasController {
         return "manager-sales";
     }
 
+    /**
+     * Show the user Properties
+     *
+     * All roles have acces to this action
+     * @param model
+     * @param principal
+     * @return
+     */
     @GetMapping("/user-profile")
     public String userProfile(Model model, Principal principal) {
 
@@ -111,6 +134,13 @@ public class VentasController {
         return "user-profile";
     }
 
+    /**
+     * Clients - admin action
+     *
+     * @param model
+     * @param principal
+     * @return
+     */
     @GetMapping("/clients-admin")
     public String adminClients (Model model, Principal principal) {
 
@@ -128,6 +158,15 @@ public class VentasController {
         return "clients-admin";
     }
 
+    /**
+     * Legacy Client action
+     *
+     * Get the clients - legacy thanks to a microservice
+     *
+     * @param model
+     * @param principal
+     * @return
+     */
     @GetMapping("/clients-legacy-admin")
     public String adminClients2 (Model model, Principal principal) {
 
@@ -149,6 +188,12 @@ public class VentasController {
         return "clients-legacy-admin";
     }
 
+    /**
+     * Error 403 - Page
+     * @param model
+     * @param principal
+     * @return
+     */
     @GetMapping("/page-denied")
     public String deniedAccess (Model model, Principal principal) {
 

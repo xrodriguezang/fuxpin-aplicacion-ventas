@@ -1,6 +1,5 @@
 package unir.tfg.ventas.services;
 
-import unir.tfg.ventas.model.Almacen;
 import unir.tfg.ventas.model.Product;
 
 import java.util.List;
