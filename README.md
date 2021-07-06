@@ -8,6 +8,10 @@ Roles are defined in the Keycloak console administration. They are also finally 
 
 Eureka Netflix Server implements a Black Box Modernization using a layer of microservices. This layer provides any interaction with the old application.
 
+#Url
+
+https://tfc.dnsnet.info:8444/ventas/user-profile
+
 # Related projects
 + [fuxpin-eureka-server](https://github.com/xrodriguezang/fuxpin-eureka-server) &#8594; Microservices Layer
 + [fuxpin-cloud-config-server](https://github.com/xrodriguezang/fuxpin-cloud-config-server) &#8594; Provides application settings
@@ -26,16 +30,24 @@ Eureka Netflix Server implements a Black Box Modernization using a layer of micr
 # Application roles
 The application has two main roles:
 
-+ admin &#8594; provided by microservices Layer
++ admin &#8594; provided by microservices Layer - Legacy application (fuxpin-legacy-ventas-rol-microservice)
 + user &#8594; provided by keycloak
 
 An user that has has admin role can view:
 
-<img src="https://spring.io/images/spring-logo-9146a4d3298760c2e7e49595184e1975.svg" width="200">
+<img src="https://raw.githubusercontent.com/xrodriguezang/fuxpin-aplicacion-ventas/9a6f9698c5d30007f0a56ede8aa31922fea7bc31/src/main/resources/imageDocs/roleAdmin.PNG" width="800">
 
 An user that has has admin user can view:
 
-<img src="https://spring.io/images/spring-logo-9146a4d3298760c2e7e49595184e1975.svg" width="200">
+<img src="https://raw.githubusercontent.com/xrodriguezang/fuxpin-aplicacion-ventas/9a6f9698c5d30007f0a56ede8aa31922fea7bc31/src/main/resources/imageDocs/roleUser.PNG" width="800">
+
+View that shows the legacy clients. Only admin user can see this page:
+
+<img src="https://raw.githubusercontent.com/xrodriguezang/fuxpin-aplicacion-ventas/9a6f9698c5d30007f0a56ede8aa31922fea7bc31/src/main/resources/imageDocs/adminActionClients.PNG" width="800">
+
+When an user with only role user acces to he before view:
+
+<img src="https://raw.githubusercontent.com/xrodriguezang/fuxpin-aplicacion-ventas/9a6f9698c5d30007f0a56ede8aa31922fea7bc31/src/main/resources/imageDocs/notAllowed.PNG" width="800">
 
 # Environment variables
 
