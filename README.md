@@ -11,6 +11,9 @@ Roles are defined in Keycloak console administration. They are also finally sent
 
 Eureka Netflix Server implements a Black Box Modernization using a layer of microservices. This layer provides any interaction with the old application.
 
+## Current version
+![](https://img.shields.io/badge/fuxpin%20aplicacion%20ventas-0.0.1-blue)
+
 # Url
 
 https://tfc.dnsnet.info:8444/ventas/user-profile
