@@ -8,7 +8,7 @@ Roles are defined in the Keycloak console administration. They are also finally 
 
 Eureka Netflix Server implements a Black Box Modernization using a layer of microservices. This layer provides any interaction with the old application.
 
-#Url
+# Url
 
 https://tfc.dnsnet.info:8444/ventas/user-profile
 
@@ -33,21 +33,29 @@ The application has two main roles:
 + admin &#8594; provided by microservices Layer - Legacy application (fuxpin-legacy-ventas-rol-microservice)
 + user &#8594; provided by keycloak
 
-An user that has has admin role can view:
+An user that has admin role can view:
 
-<img src="https://raw.githubusercontent.com/xrodriguezang/fuxpin-aplicacion-ventas/9a6f9698c5d30007f0a56ede8aa31922fea7bc31/src/main/resources/imageDocs/roleAdmin.PNG" width="800">
+url: https://xrodrig.dnsnet.info:8444/ventas/manager-sales
+
+<img src="https://raw.githubusercontent.com/xrodriguezang/fuxpin-aplicacion-ventas/main/src/main/resources/imageDocs/roleAdmin.PNG" width="800">
 
 An user that has has admin user can view:
 
-<img src="https://raw.githubusercontent.com/xrodriguezang/fuxpin-aplicacion-ventas/9a6f9698c5d30007f0a56ede8aa31922fea7bc31/src/main/resources/imageDocs/roleUser.PNG" width="800">
+url: https://xrodrig.dnsnet.info:8444/ventas/manager-sales
+
+<img src="https://raw.githubusercontent.com/xrodriguezang/fuxpin-aplicacion-ventas/main/src/main/resources/imageDocs/roleUser.PNG" width="800">
 
 View that shows the legacy clients. Only admin user can see this page:
 
-<img src="https://raw.githubusercontent.com/xrodriguezang/fuxpin-aplicacion-ventas/9a6f9698c5d30007f0a56ede8aa31922fea7bc31/src/main/resources/imageDocs/adminActionClients.PNG" width="800">
+url: https://xrodrig.dnsnet.info:8444/ventas/clients-legacy-admin
+
+<img src="https://raw.githubusercontent.com/xrodriguezang/fuxpin-aplicacion-ventas/main/src/main/resources/imageDocs/adminActionClients.PNG" width="800">
 
 When an user with only role user acces to he before view:
 
-<img src="https://raw.githubusercontent.com/xrodriguezang/fuxpin-aplicacion-ventas/9a6f9698c5d30007f0a56ede8aa31922fea7bc31/src/main/resources/imageDocs/notAllowed.PNG" width="800">
+url: https://xrodrig.dnsnet.info:8444/ventas/clients-legacy-admin
+
+<img src="https://raw.githubusercontent.com/xrodriguezang/fuxpin-aplicacion-ventas/main/src/main/resources/imageDocs/notAllowed.PNG" width="800">
 
 # Environment variables
 
