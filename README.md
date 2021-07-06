@@ -35,19 +35,19 @@ The application has two main roles:
 
 An user that has has admin role can view:
 
-<img src="https://raw.githubusercontent.com/xrodriguezang/fuxpin-aplicacion-ventas/9a6f9698c5d30007f0a56ede8aa31922fea7bc31/src/main/resources/imageDocs/roleAdmin.PNG" width="800">
+<img src="https://raw.githubusercontent.com/xrodriguezang/fuxpin-aplicacion-ventas/main/src/main/resources/imageDocs/roleAdmin.PNG" width="800">
 
 An user that has has admin user can view:
 
-<img src="https://raw.githubusercontent.com/xrodriguezang/fuxpin-aplicacion-ventas/9a6f9698c5d30007f0a56ede8aa31922fea7bc31/src/main/resources/imageDocs/roleUser.PNG" width="800">
+<img src="https://raw.githubusercontent.com/xrodriguezang/fuxpin-aplicacion-ventas/main/src/main/resources/imageDocs/roleUser.PNG" width="800">
 
 View that shows the legacy clients. Only admin user can see this page:
 
-<img src="https://raw.githubusercontent.com/xrodriguezang/fuxpin-aplicacion-ventas/9a6f9698c5d30007f0a56ede8aa31922fea7bc31/src/main/resources/imageDocs/adminActionClients.PNG" width="800">
+<img src="https://raw.githubusercontent.com/xrodriguezang/fuxpin-aplicacion-ventas/main/src/main/resources/imageDocs/adminActionClients.PNG" width="800">
 
 When an user with only role user acces to he before view:
 
-<img src="https://raw.githubusercontent.com/xrodriguezang/fuxpin-aplicacion-ventas/9a6f9698c5d30007f0a56ede8aa31922fea7bc31/src/main/resources/imageDocs/notAllowed.PNG" width="800">
+<img src="https://raw.githubusercontent.com/xrodriguezang/fuxpin-aplicacion-ventas/main/src/main/resources/imageDocs/notAllowed.PNG" width="800">
 
 # Environment variables
 
